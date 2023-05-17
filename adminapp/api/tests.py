@@ -20,7 +20,6 @@ class TestClass(APITestCase):
             'статусом 200'
         )
 
-
     def test_delete_users(self):
         url = self.base_url + f'users/{self.user_id_exists}/'
         response = self.client.delete(url)
@@ -30,7 +29,6 @@ class TestClass(APITestCase):
             f'эндпоинт {url}, должен вернуть ответ со '
             'статусом 200'
         )
-
 
     def test_get_users_list(self):
         url = self.base_url + 'users/list/'
@@ -60,22 +58,24 @@ class TestClass(APITestCase):
             'содержащий ключ "detail" со значением "Список всех пользователей"'
         )
 
-
     def test_files_make_dump(self):
         url = self.base_url + 'files/make_dump/'
 
-
         response = self.client.generic(
-            method='GET', path=url, data=json.dumps({'filename': self.correct_filename}),
-            content_type='application/json')
-        
+            method='GET', path=url,
+            data=json.dumps({'filename': self.correct_filename}),
+            content_type='application/json'
+        )
+
         assert response.status_code == HTTPStatus.OK, (
             'GET запрос с корректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть ответ cо '
             'статусом 200'
         )
 
-        assert list(response.data.keys()) == ['status', 'detail', 'status_code'], (
+        assert list(response.data.keys()) == ['status',
+                                              'detail',
+                                              'status_code'], (
             'GET запрос с корректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть json c '
             'полями status, detail, status_code'
@@ -100,16 +100,20 @@ class TestClass(APITestCase):
         )
 
         response = self.client.generic(
-            method='GET', path=url, data=json.dumps({'filename': self.incorrect_filename}),
-            content_type='application/json')
-        
+            method='GET', path=url,
+            data=json.dumps({'filename': self.incorrect_filename}),
+            content_type='application/json'
+        )
+
         assert response.status_code == HTTPStatus.BAD_REQUEST, (
             'GET запрос с НЕкорректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть ответ cо '
             'статусом 400'
         )
 
-        assert list(response.data.keys()) == ['status', 'detail', 'status_code'], (
+        assert list(response.data.keys()) == ['status',
+                                              'detail',
+                                              'status_code'], (
             'GET запрос с НЕкорректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть json c '
             'полями status, detail, status_code'
@@ -166,12 +170,13 @@ class TestClass(APITestCase):
             f'эндпоинт {url}, должен вернуть json, '
             'содержащий ключ "data" со значением типа list'
         )
-    
+
     def test_files_save(self):
         url = self.base_url + 'files/save/'
 
         response = self.client.generic(
-            method='GET', path=url, data=json.dumps({'filename': self.correct_filename}),
+            method='GET', path=url,
+            data=json.dumps({'filename': self.correct_filename}),
             content_type='application/json'
         )
 
@@ -181,23 +186,27 @@ class TestClass(APITestCase):
             'статусом 200'
         )
 
-        assert response.__getitem__('content-type') == 'application/octet-stream', (
+        assert (response.__getitem__('content-type')
+                == 'application/octet-stream'), (
             'GET запрос с корректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть ответ в '
             'application/octet-stream формате'
         )
 
         response = self.client.generic(
-            method='GET', path=url, data=json.dumps({'filename': self.incorrect_filename}),
+            method='GET', path=url,
+            data=json.dumps({'filename': self.incorrect_filename}),
             content_type='application/json')
-        
+
         assert response.status_code == HTTPStatus.NOT_FOUND, (
             'GET запрос с НЕкорректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть ответ cо '
             'статусом 404'
         )
 
-        assert list(response.data.keys()) == ['status', 'detail', 'status_code'], (
+        assert list(response.data.keys()) == ['status',
+                                              'detail',
+                                              'status_code'], (
             'GET запрос с НЕкорректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть json c '
             'полями status, detail, status_code'
@@ -220,11 +229,12 @@ class TestClass(APITestCase):
             f'эндпоинт {url}, должен вернуть json, '
             'содержащий ключ "status_code" со значением "404"'
         )
-    
+
     def test_files_delete(self):
         url = self.base_url + 'files/delete/'
         response = self.client.generic(
-            method='DELETE', path=url, data=json.dumps({'filename': self.correct_filename}),
+            method='DELETE', path=url,
+            data=json.dumps({'filename': self.correct_filename}),
             content_type='application/json'
         )
 
@@ -234,7 +244,9 @@ class TestClass(APITestCase):
             'статусом 200'
         )
 
-        assert list(response.data.keys()) == ['status', 'detail', 'status_code'], (
+        assert list(response.data.keys()) == ['status',
+                                              'detail',
+                                              'status_code'], (
             'DELETE запрос с корректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть json c '
             'полями status, detail, status_code'
@@ -259,16 +271,19 @@ class TestClass(APITestCase):
         )
 
         response = self.client.generic(
-            method='DELETE', path=url, data=json.dumps({'filename': self.incorrect_filename}),
+            method='DELETE', path=url,
+            data=json.dumps({'filename': self.incorrect_filename}),
             content_type='application/json')
-        
+
         assert response.status_code == HTTPStatus.BAD_REQUEST, (
             'GET запрос с НЕкорректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть ответ cо '
             'статусом 400'
         )
 
-        assert list(response.data.keys()) == ['status', 'detail', 'status_code'], (
+        assert list(response.data.keys()) == ['status',
+                                              'detail',
+                                              'status_code'], (
             'GET запрос с НЕкорректным filename, отправленный на '
             f'эндпоинт {url}, должен вернуть json c '
             'полями status, detail, status_code'
@@ -326,7 +341,7 @@ class TestClass(APITestCase):
             f'эндпоинт {url}, должен вернуть json, '
             'содержащий ключ "file" со значением "file"'
         )
-    
+
     def test_post_release_notes(self):
         url = self.base_url + 'release_notes/'
 
@@ -338,7 +353,6 @@ class TestClass(APITestCase):
             'статусом 200'
         )
 
-    
     def test_delete_release_notes(self):
         url = self.base_url + 'release_notes/'
 
@@ -349,7 +363,7 @@ class TestClass(APITestCase):
             f'эндпоинт {url}, должен вернуть ответ cо '
             'статусом 200'
         )
-    
+
     def test_release_show(self):
         url = self.base_url + 'release_notes/show'
 

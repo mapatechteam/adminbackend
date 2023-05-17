@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
-from .data import *
+from .data import data_users
 
 
 @api_view(['GET', 'DELETE'])
@@ -13,7 +13,7 @@ def user(request, user_id):
         return Response(data, status=status.HTTP_200_OK)
     if request.method == 'DELETE':
         return Response(status=status.HTTP_200_OK)
-    
+
 
 @api_view(['GET'])
 def user_list(request):
@@ -73,7 +73,7 @@ def files_save(request):
 
     return Response(filename, content_type='application/octet-stream',
                     status=status.HTTP_200_OK
-    )
+                    )
 
 
 @api_view(['DELETE'])
@@ -106,10 +106,10 @@ def release_notes(request):
              "file": "file"},
             status=status.HTTP_200_OK
         )
-    
+
     if request.method == 'POST':
         return Response(status=status.HTTP_200_OK)
-    
+
     if request.method == 'DELETE':
         return Response(status=status.HTTP_200_OK)
 
