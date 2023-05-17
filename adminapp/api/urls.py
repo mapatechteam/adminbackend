@@ -11,6 +11,6 @@ urlpatterns = [
     path('files/preview/', files_preview, name='files_preview'),
     path('files/save/', files_save, name='files_save'),
     path('files/delete/', files_delete, name='files_delete'),
-    path('realese_notes/', release_notes, name='release_notes'),
-    path('realese_notes/show', release_notes_show, name='release_notes_show'),
+    path('release_notes/', release_notes, name='release_notes'),
+    path('release_notes/show', release_notes_show, name='release_notes_show'),
 ]
