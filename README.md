@@ -20,5 +20,7 @@ docker run -d -p 8080:8000 --name django_drf_app django_drf
 
 Запросы к API делать по адресу:
 ```
-http://localhost:8080/ или http://127.0.0.1:8080/
+http://localhost:8080/api/lectonic_admin/api/
+или
+http://127.0.0.1:8080/api/lectonic_admin/api/
 ```
