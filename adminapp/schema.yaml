@@ -1,0 +1,283 @@
+openapi: 3.0.2
+info:
+  title: 'AdminApp'
+  version: 'Документация для приложения AdminApp проекта Lectonic'
+
+paths:
+  /api/lectonic_admin/api/users/{user_id}/:
+    get:
+      operationId: retrieveuser
+      description: 'Информация о пользователе с указанным user_id'
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/User'
+          description: 'OK'
+      tags:
+      - Users
+    delete:
+      operationId: destroyuser
+      description: 'Удаление пользователя с указанным user_id'
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'OK'
+      tags:
+      - Users
+  /api/lectonic_admin/api/users/list/:
+    get:
+      operationId: listuser_lists
+      description: 'Получение списка пользователей'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  detail:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+          description: 'OK'
+      tags:
+      - Users
+      
+  /api/lectonic_admin/api/files/make_dump/:
+    get:
+      operationId: listfiles_make_dumps
+      description: 'Создание резервной копии базы данных файла указанного в параметрах запроса в формате <имяфайла>.<форматфайла>'
+      parameters:
+        - name: filename
+          in: query
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  detail:
+                    type: string
+                  status_code:
+                    type: integer
+          description: 'OK'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  detail:
+                    type: string
+                  status_code:
+                    type: integer
+          description: 'Bad Request'
+      tags:
+      - Files
+  /api/lectonic_admin/api/files/preview/:
+    get:
+      operationId: listfiles_previews
+      description: 'Вывод превью файла указанного в параметрах запроса в формате <имяфайла>.<форматфайла>'
+      parameters:
+        - name: filename
+          in: query
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  detail:
+                    type: string
+                  data:
+                    type: array
+                    items: {}
+          description: 'OK'
+      tags:
+      - Files
+  /api/lectonic_admin/api/files/save/:
+    get:
+      operationId: listfiles_saves
+      description: 'Скачивание файла указанного в параметрах запроса в формате <имя-файла>.<формат-файла>'
+      parameters:
+        - name: filename
+          in: query
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+          description: 'OK'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  detail:
+                    type: string
+                  status_code:
+                    type: integer
+          description: 'Bad Request'
+      tags:
+      - Files
+  /api/lectonic_admin/api/files/delete/:
+    delete:
+      operationId: destroyfiles_delete
+      description: 'Удаление файла указанного в параметрах запроса в формате <имя-файла>.<формат-файла>'
+      parameters:
+        - name: filename
+          in: query
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  detail:
+                    type: string
+                  status_code:
+                    type: integer
+          description: 'OK'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  detail:
+                    type: string
+                  status_code:
+                    type: integer
+          description: 'Bad Request'
+      tags:
+      - Files
+  /api/lectonic_admin/api/release_notes/:
+    get:
+      operationId: listrelease_notes
+      description: 'Получить примечания к релизу'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  number: 
+                    type: integer
+                  title:
+                    type: string
+                  file:
+                    type: string
+          description: 'OK'
+      tags:
+      - Release notes
+    post:
+      operationId: createrelease_notes
+      description: 'Добавить примечания к релизу'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number: 
+                  type: integer
+                title:
+                  type: string
+                file:
+                  type: string
+      responses:
+        '200':
+          description: 'OK'
+      tags:
+      - Release notes
+    delete:
+      operationId: destroyrelease_notes
+      description: 'Удалить примечания к релизу'
+      parameters: []
+      responses:
+        '200':
+          description: 'OK'
+      tags:
+      - Release notes
+  /api/lectonic_admin/api/release_notes/show:
+    get:
+      operationId: listrelease_notes_shows
+      description: 'Показать патч всем пользователям'
+      parameters: []
+      responses:
+        '200':
+          description: 'OK'
+      tags:
+      - Release notes
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+        is_authenticated:
+          type: boolean
+        date_joined:
+          type: string
+          format: date-time
