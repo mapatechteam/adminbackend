@@ -1,4 +1,5 @@
 # lectonic_adminapp
+OpenAPI документация: adminapp/schema.yaml
 ## Запуск сервиса
 1. Клонировать репозиторий:
 ```
