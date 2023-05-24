@@ -19,9 +19,9 @@ docker build -t django_drf .
 docker run -d -p 8080:8000 --name django_drf_app django_drf
 ```
 Документация: 
-'''
+```
 http://localhost:8080/api/lectonic_admin/api/swagger/
-'''
+```
 Запросы к API делать по адресу:
 ```
 http://localhost:8080/api/lectonic_admin/api/
