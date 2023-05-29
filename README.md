@@ -7,7 +7,7 @@ git clone https://github.com/MikhailBogachev/TEST_DRF_friend_service.git
 ```
 2. Gерейти в него в командной строке:
 ```
-cd TEST_DRF_friend_service
+cd adminapp/
 ```
 ### Запуск с помощью docker
 3. Выполнить последовательно две команды:
