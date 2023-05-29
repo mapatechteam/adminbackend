@@ -3,9 +3,9 @@ OpenAPI документация: adminapp/schema.yaml
 ## Запуск сервиса
 1. Клонировать репозиторий:
 ```
-git clone https://github.com/MikhailBogachev/TEST_DRF_friend_service.git
+git clone https://github.com/mapatechteam/adminbackend.git
 ```
-2. Gерейти в него в командной строке:
+2. Перейти в него в командной строке:
 ```
 cd adminapp/
 ```
